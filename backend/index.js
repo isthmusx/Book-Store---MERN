@@ -22,7 +22,6 @@ app.post('/books', async(request, response) => {
             !request.body.publishYear
         ) {
             return response.status(400).send({
-
                 message: 'Send all required fields: Title, Author, PublishYear',
             });
         }
@@ -49,6 +48,45 @@ app.get('/books', async (request, response) => {
             count: books.length,
             data: books
         });
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+});
+
+// Route for Get All Books from database by id
+app.get('/books/:id', async (request, response) => {
+    try {
+        const { id } = request.params;
+        const book = await Book.findById(id);
+
+        return response.status(200).json(book);
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+});
+
+// Route for update a book
+app.put('/books/:id', async (request, response) => {
+    try{
+        if(
+            !request.body.title ||
+            !request.body.author ||
+            !request.body.publishYear
+        ) {
+            return response.status(400).send({
+                message: 'Send all required fields: Title, Author, PublishYear',
+            });
+        }
+
+        const { id } = request.params;
+        const result = await Book.findByIdAndUpdate(id, request.body);
+        
+        if (!result){
+            return response.status(404).json({ message: 'Book not found'});
+        }
+        return response.status(200).json({ message: 'Book updated successfully'});
     } catch (error) {
         console.log(error.message);
         response.status(500).send({ message: error.message });
