@@ -8,18 +8,18 @@ import cors from 'cors';
 const app = expess();   
 
 // Middleware for parsing request body
-//app.use(expess.json());
+app.use(expess.json());
 
 // Middleware for handling cors policy
 app.use(cors());
 
-app.use(
+/*app.use(
     cors({
         origin: 'http://localhost:5555/',
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         allowedHeaders: ['Content-Type'],
     })
-);
+);*/
 
 app.get('/', (request, response) => {
     console.log(request)
