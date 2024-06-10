@@ -1,11 +1,11 @@
 import React from "react";
 import { Routes, Route } from 'react-router-dom' 
-import Home from "./pages/Home.jsx";
+import Home from "./pages/Home";
 import CreateBook from "./pages/CreateBook";
 import EditBook from "./pages/EditBook";
 import DeleteBook from "./pages/DeleteBook";
 import ShowBook from "./pages/ShowBook";
-
+import './index.css';
 
 const App = () => {
   return (
