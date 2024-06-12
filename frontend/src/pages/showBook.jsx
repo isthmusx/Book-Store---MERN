@@ -6,7 +6,7 @@ import Spinner from "../../components/Spinner";
 
 const ShowBook = () => {
   const [book, setBook] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
